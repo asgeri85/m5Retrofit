@@ -2,11 +2,11 @@ package com.example.dersretrofitson.screen
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.dersretrofitson.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.dersretrofitson.api.RetrofitClient
 import com.example.dersretrofitson.databinding.FragmentHomeBinding
 import com.example.dersretrofitson.model.ProductResponseModelItem
@@ -21,6 +21,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val productAdapter = ProductAdapter()
+    private val viewModel by viewModels<HomeViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,8 +38,22 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.rvProducts.adapter = productAdapter
 
-        getProducts()
+        observeData()
 
+        binding.buttonCounter.setOnClickListener {
+            viewModel.artir()
+        }
+
+        binding.buttonAzalt.setOnClickListener {
+            viewModel.azalt()
+        }
+        // getProducts()
+    }
+
+    private fun observeData() {
+        viewModel.counter.observe(viewLifecycleOwner) { counter ->
+            binding.textViewCounter.text = counter.toString()
+        }
     }
 
     private fun getProducts() {

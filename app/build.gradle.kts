@@ -68,5 +68,11 @@ dependencies {
 
     debugImplementation("com.github.chuckerteam.chucker:library:4.1.0")
 
+    val lifecycle_version = "2.8.7"
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
+
 
 }
