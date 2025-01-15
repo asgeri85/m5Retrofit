@@ -2,12 +2,11 @@ package com.example.dersretrofitson.screen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dersretrofitson.databinding.ItemProductBinding
 import com.example.dersretrofitson.model.ProductResponseModelItem
-import com.example.dersretrofitson.util.loadUrl
-import com.squareup.picasso.Picasso
+import com.example.dersretrofitson.util.goneItem
+import com.example.dersretrofitson.util.visibleItem
 
 class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
@@ -39,6 +38,11 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() 
         holder.itemProductBinding.root.setOnClickListener {
             /* Navigation.findNavController(it)
                  .navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(product.id.toString()))*/
+        }
+
+        holder.itemProductBinding.textViewProductItemTitle.setOnClickListener {
+            holder.itemProductBinding.textViewProductItemTitle.goneItem()
+            holder.itemProductBinding.textViewTitleLong.visibleItem()
         }
     }
 
