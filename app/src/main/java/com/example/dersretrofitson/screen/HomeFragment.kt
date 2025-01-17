@@ -8,10 +8,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.dersretrofitson.databinding.FragmentHomeBinding
+import com.example.dersretrofitson.model.Musiqici
 import com.example.dersretrofitson.util.goneItem
 import com.example.dersretrofitson.util.visibleItem
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
@@ -19,6 +22,8 @@ class HomeFragment : Fragment() {
     private val viewModel by viewModels<HomeViewModel>()
     private val categoryAdapter = CategoryAdapter()
 
+    @Inject
+    lateinit var musiqici: Musiqici
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,10 +41,20 @@ class HomeFragment : Fragment() {
         binding.rvProducts.adapter = productAdapter
         binding.rvCategory.adapter = categoryAdapter
 
+
+        /* val mahni = Mahni()
+         val alet = Alet()
+
+         val musiqici = Musiqici(mahni, alet)
+
+         musiqici.mahniOxu()*/
+
+        musiqici.mahniOxu()
+
         observeData()
 
-        categoryAdapter.onClickItem = {
-            viewModel.getCategoryProduct(it)
+        categoryAdapter.onClickItem = { name ->
+            viewModel.getCategoryProduct(name)
         }
 
     }

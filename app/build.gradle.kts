@@ -4,6 +4,7 @@ plugins {
     id("androidx.navigation.safeargs")
     id("kotlin-parcelize")
     kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -74,5 +75,13 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
 
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
 
+
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

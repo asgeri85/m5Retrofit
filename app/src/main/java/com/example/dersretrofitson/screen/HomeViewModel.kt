@@ -2,13 +2,20 @@ package com.example.dersretrofitson.screen
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.dersretrofitson.api.RetrofitClient
+import com.example.dersretrofitson.api.ProductService
 import com.example.dersretrofitson.model.ProductResponseModelItem
+import dagger.hilt.android.lifecycle.HiltViewModel
+import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    val api: ProductService,
+    val okHttpClient: OkHttpClient
+) : ViewModel() {
 
     val productList: MutableLiveData<List<ProductResponseModelItem>> = MutableLiveData()
     val loading: MutableLiveData<Boolean> = MutableLiveData()
@@ -16,7 +23,6 @@ class HomeViewModel : ViewModel() {
 
     val categoryList: MutableLiveData<List<String>> = MutableLiveData()
 
-    val api = RetrofitClient()
 
     init {
         getProducts()
@@ -25,7 +31,7 @@ class HomeViewModel : ViewModel() {
 
     fun getProducts() {
         loading.value = true
-        api.createApi().getAllProducts().enqueue(object : Callback<List<ProductResponseModelItem>> {
+        api.getAllProducts().enqueue(object : Callback<List<ProductResponseModelItem>> {
             override fun onResponse(
                 call: Call<List<ProductResponseModelItem>>,
                 response: Response<List<ProductResponseModelItem>>
@@ -45,7 +51,7 @@ class HomeViewModel : ViewModel() {
     }
 
     fun getAllCategory() {
-        api.createApi().getCategories().enqueue(object : Callback<List<String>> {
+        api.getCategories().enqueue(object : Callback<List<String>> {
             override fun onResponse(call: Call<List<String>>, response: Response<List<String>>) {
                 if (response.isSuccessful) {
                     response.body()?.let { data ->
@@ -62,7 +68,7 @@ class HomeViewModel : ViewModel() {
     }
 
     fun getCategoryProduct(categoryName: String) {
-        api.createApi().getCategoryProduct(categoryName)
+        api.getCategoryProduct(categoryName)
             .enqueue(object : Callback<List<ProductResponseModelItem>> {
                 override fun onResponse(
                     call: Call<List<ProductResponseModelItem>>,

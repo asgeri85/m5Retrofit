@@ -32,8 +32,7 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>
             onClickItem(title)
         }
     }
-
-
+    
     fun updateList(newList: List<String>) {
         categoryList.clear()
         categoryList.addAll(newList)
