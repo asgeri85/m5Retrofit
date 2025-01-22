@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1045421709094",
+    "project_id": "softders-356f4",
+    "storage_bucket": "softders-356f4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045421709094:android:9d04977be7ed42bb5d53e7",
+        "android_client_info": {
+          "package_name": "com.example.dersretrofitson"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAC3830xjcarmqXRjMljFJRdnIPqgzlMVI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

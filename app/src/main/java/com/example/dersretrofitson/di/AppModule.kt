@@ -1,6 +1,9 @@
 package com.example.dersretrofitson.di
 
 import com.example.dersretrofitson.api.ProductService
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,5 +37,11 @@ object AppModule {
                 .build()
 
         return retrofit.create(ProductService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideFirebaseAuth(): FirebaseAuth {
+        return Firebase.auth
     }
 }

@@ -5,6 +5,7 @@ plugins {
     id("kotlin-parcelize")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -46,6 +47,7 @@ android {
 
 dependencies {
 
+    implementation(libs.firebase.auth)
     val nav_version = "2.8.4"
 
     implementation(libs.androidx.core.ktx)

@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.dersretrofitson" />
+                  <option name="mobileSdkAppId" value="1:1045421709094:android:9d04977be7ed42bb5d53e7" />
+                  <option name="projectId" value="softders-356f4" />
+                  <option name="projectNumber" value="1045421709094" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.dersretrofitson.api.ProductService
 import com.example.dersretrofitson.model.ProductResponseModelItem
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -14,7 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     val api: ProductService,
-    val okHttpClient: OkHttpClient
+    val okHttpClient: OkHttpClient,
+    private val firebaseAuth: FirebaseAuth
 ) : ViewModel() {
 
     val productList: MutableLiveData<List<ProductResponseModelItem>> = MutableLiveData()
@@ -86,6 +88,10 @@ class HomeViewModel @Inject constructor(
                     error.value = t.localizedMessage
                 }
             })
+    }
+
+    fun logoutFirebase() {
+        firebaseAuth.signOut()
     }
 
 }

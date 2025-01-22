@@ -57,6 +57,10 @@ class HomeFragment : Fragment() {
             viewModel.getCategoryProduct(name)
         }
 
+        binding.buttonExit.setOnClickListener {
+            viewModel.logoutFirebase()
+        }
+
     }
 
     private fun observeData() {
