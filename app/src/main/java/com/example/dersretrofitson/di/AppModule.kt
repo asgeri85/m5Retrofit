@@ -1,12 +1,18 @@
 package com.example.dersretrofitson.di
 
+import android.content.Context
+import android.content.SharedPreferences
+import androidx.room.Room
 import com.example.dersretrofitson.api.ProductService
+import com.example.dersretrofitson.room.ProductDatabase
+import com.example.dersretrofitson.room.ProductsDAO
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -43,5 +49,25 @@ object AppModule {
     @Provides
     fun provideFirebaseAuth(): FirebaseAuth {
         return Firebase.auth
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideRoom(@ApplicationContext context: Context): ProductDatabase {
+        return Room.databaseBuilder(context, ProductDatabase::class.java, "productDB").build()
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideProductDao(productDatabase: ProductDatabase): ProductsDAO {
+        return productDatabase.productDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideSharedPref(@ApplicationContext context: Context): SharedPreferences {
+        return context.getSharedPreferences("localSP", Context.MODE_PRIVATE)
     }
 }

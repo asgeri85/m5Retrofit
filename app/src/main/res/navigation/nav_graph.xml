@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/wordFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -21,4 +21,9 @@
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/wordFragment"
+        android:name="com.example.dersretrofitson.screen.WordFragment"
+        android:label="fragment_word"
+        tools:layout="@layout/fragment_word" />
 </navigation>

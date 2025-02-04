@@ -1,5 +1,6 @@
 package com.example.dersretrofitson.screen
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,6 +8,7 @@ import com.example.dersretrofitson.databinding.ItemProductBinding
 import com.example.dersretrofitson.model.ProductResponseModelItem
 import com.example.dersretrofitson.util.goneItem
 import com.example.dersretrofitson.util.visibleItem
+import kotlinx.coroutines.delay
 
 class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
@@ -50,5 +52,10 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() 
         productList.clear()
         productList.addAll(newList)
         notifyDataSetChanged()
+    }
+
+    suspend fun fetch() {
+        delay(3000)
+        Log.e("fasfasf", "dfsfsdfsd")
     }
 }

@@ -1,23 +1,31 @@
 package com.example.dersretrofitson.screen
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.dersretrofitson.databinding.FragmentLoginBinding
 import com.example.dersretrofitson.util.goneItem
 import com.example.dersretrofitson.util.visibleItem
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
     private val viewModel by viewModels<LoginViewModel>()
+    var job1: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,6 +48,27 @@ class LoginFragment : Fragment() {
 
         binding.buttonRegister.setOnClickListener {
             register()
+        }
+
+        GlobalScope.launch {
+            Log.e("addımlar", "addım 1")
+            delay(5000)
+        }
+
+        job1 = lifecycleScope.launch(Dispatchers.IO) {
+            Log.e("addımlar", "addım 1")
+            delay(5000)
+        }
+
+        job1?.cancel()
+
+        lifecycleScope.launch {
+            Log.e("addımlar", "addım 2")
+            delay(3000)
+        }
+
+        lifecycleScope.launch {
+            Log.e("addımlar", "addım 3")
         }
     }
 
